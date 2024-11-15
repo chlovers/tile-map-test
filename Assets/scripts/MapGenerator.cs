@@ -8,6 +8,7 @@ public class MapGenerator : MonoBehaviour
 {
     // Same fields as before
     public Tilemap tilemap;
+    public Tilemap collisonmap;
     public Tile wallTile;
     public Tile floorTile;
     public Tile doorTile;
@@ -53,7 +54,7 @@ public class MapGenerator : MonoBehaviour
 
                 if (nx >= 0 && nx < width && ny >= 0 && ny < height && !visited[nx, ny])
                 {
-                    if (map[nx, ny] == '*' || map[nx, ny] == 'O') // If it's a walkable tile
+                    if (map[nx, ny] == '*' || map[nx, ny] == 'O') // If it's a floor tile
                     {
                         visited[nx, ny] = true;
                         queue.Enqueue(new Vector2Int(nx, ny));
@@ -171,6 +172,7 @@ public class MapGenerator : MonoBehaviour
         int height = mapData.Split('\n').Length;
 
         tilemap.ClearAllTiles(); // Clear existing tiles
+        collisonmap.ClearAllTiles();// clearing the tiles for the collisonmap
 
         for (int y = 0; y < height; y++)
         {
@@ -184,6 +186,7 @@ public class MapGenerator : MonoBehaviour
                 {
                     case '#':
                         tilemap.SetTile(tilePosition, wallTile);
+                        collisonmap.SetTile(tilePosition, wallTile); //setting the walls for the collison map
                         break;
                     case '*':
                         tilemap.SetTile(tilePosition, floorTile);
@@ -193,6 +196,7 @@ public class MapGenerator : MonoBehaviour
                         break;
                     case '$':
                         tilemap.SetTile(tilePosition, chestTile);
+                        collisonmap.SetTile(tilePosition, chestTile);
                         break;
                     default:
                         break;
