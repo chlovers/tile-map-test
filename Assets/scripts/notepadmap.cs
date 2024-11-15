@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class notepadmap : MonoBehaviour
 
 
-{
+{// mostly the same assests from the gen script 
     public TextAsset mapFile;
     public MapGenerator mapGenerator;
     public Tilemap tilemap;
@@ -23,11 +23,11 @@ public class notepadmap : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Map file not assigned!");
+            Debug.LogError("Map file not assigned!"); // if there is no map assigned to the assest at the top 
         }
     }
 
-    public void ConvertMapToTilemap(string mapData)
+    public void ConvertMapToTilemap(string mapData) // just kinda copy and pasted from the map gen script 
     {
         int width = mapData.Split('\n')[0].Length;
         int height = mapData.Split('\n').Length;

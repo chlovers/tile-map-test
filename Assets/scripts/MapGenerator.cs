@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class MapGenerator : MonoBehaviour
 {
-    // Same fields as before
+   // 2 seperate tiles maps one for moving the other for the walls 
     public Tilemap tilemap;
     public Tilemap collisonmap;
     public Tile wallTile;
@@ -139,12 +139,12 @@ public class MapGenerator : MonoBehaviour
                 }
             }
 
-            // Check if the map is connected
+            // cHeck if the map is connected
             mapIsConnected = IsMapConnected(map, width, height);
 
-        } while (!mapIsConnected); // Regenerate the map until it is connected
+        } while (!mapIsConnected); // regenerate the map until it is usable and connected 
 
-        // Convert the map array to a string representation
+        // convert the map array to a string 
         string mapString = "";
         for (int y = 0; y < height; y++)
         {
@@ -152,27 +152,27 @@ public class MapGenerator : MonoBehaviour
             {
                 mapString += map[x, y];
             }
-            mapString += "\n"; // New line at the end of each row
+            mapString += "\n"; // so we can have a  line at the end of each row
         }
 
         return mapString;
     }
 
-    // Helper method to check if a tile is adjacent to a wall
+    
     private bool IsAdjacentToWall(int x, int y, char[,] map)
     {
         return map[x - 1, y] == '#' || map[x + 1, y] == '#' ||
                map[x, y - 1] == '#' || map[x, y + 1] == '#';
     }
 
-    // Convert the map string to tiles in the Tilemap
+    // convert the map string to tiles in the tilemap
     public void ConvertMapToTilemap(string mapData)
     {
         int width = mapData.Split('\n')[0].Length;
         int height = mapData.Split('\n').Length;
 
         tilemap.ClearAllTiles(); // Clear existing tiles
-        collisonmap.ClearAllTiles();// clearing the tiles for the collisonmap
+        collisonmap.ClearAllTiles();// clearing the tiles for the collisoinmap
 
         for (int y = 0; y < height; y++)
         {
