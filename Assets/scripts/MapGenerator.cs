@@ -12,7 +12,7 @@ public class MapGenerator : MonoBehaviour
     public Tile floorTile;
     public Tile doorTile;
     public Tile chestTile;
-
+    public GameObject Player;
     private bool doorPlaced = false; // this makes sure it knows i placed a door casue sometimes it was spawning so man doors lol
 
   
@@ -201,10 +201,13 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
+   
+
     void Start()
     {
         string map = GenerateMapString(15, 20); // stetting and generating the map in the speficed size
         Debug.Log(map); 
         ConvertMapToTilemap(map); // converting to tilemap
+        
     }
 }
