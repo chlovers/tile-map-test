@@ -28,15 +28,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
             ""id"": ""ed0dae2d-2be8-47aa-9257-a2101c346c0e"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""e6d20961-4a57-4657-b013-1feac60824f2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Movement"",
                     ""type"": ""PassThrough"",
                     ""id"": ""0ffb6a25-b992-4cf7-be10-4cddb5047b1f"",
@@ -47,28 +38,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""185828ca-9565-44d7-873d-c6357587d073"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8d038e7c-8774-4f4b-ac87-d744d13be5ac"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""379eee93-9097-41a8-a535-46d10b2a1901"",
@@ -131,7 +100,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
 }");
         // Move
         m_Move = asset.FindActionMap("Move", throwIfNotFound: true);
-        m_Move_Newaction = m_Move.FindAction("New action", throwIfNotFound: true);
         m_Move_Movement = m_Move.FindAction("Movement", throwIfNotFound: true);
     }
 
@@ -194,13 +162,11 @@ public partial class @Movement: IInputActionCollection2, IDisposable
     // Move
     private readonly InputActionMap m_Move;
     private List<IMoveActions> m_MoveActionsCallbackInterfaces = new List<IMoveActions>();
-    private readonly InputAction m_Move_Newaction;
     private readonly InputAction m_Move_Movement;
     public struct MoveActions
     {
         private @Movement m_Wrapper;
         public MoveActions(@Movement wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Move_Newaction;
         public InputAction @Movement => m_Wrapper.m_Move_Movement;
         public InputActionMap Get() { return m_Wrapper.m_Move; }
         public void Enable() { Get().Enable(); }
@@ -211,9 +177,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MoveActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MoveActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
@@ -221,9 +184,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IMoveActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
@@ -246,7 +206,6 @@ public partial class @Movement: IInputActionCollection2, IDisposable
     public MoveActions @Move => new MoveActions(this);
     public interface IMoveActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
     }
 }
