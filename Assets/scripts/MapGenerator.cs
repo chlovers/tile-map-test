@@ -16,7 +16,13 @@ public class MapGenerator : MonoBehaviour
     public GameObject Player;
     private bool doorPlaced = false; // this makes sure it knows i placed a door casue sometimes it was spawning so man doors lol
 
-  
+  /// <summary>
+  /// Generates map, resets if map is not connected
+  /// </summary>
+  /// <param name="map"></param>
+  /// <param name="width"></param>
+  /// <param name="height"></param>
+  /// <returns></returns>
     private bool IsMapConnected(char[,] map, int width, int height)
     {
         bool[,] visited = new bool[width, height];
@@ -50,7 +56,7 @@ public class MapGenerator : MonoBehaviour
             foreach (var direction in new Vector2Int[] { new Vector2Int(-1, 0), new Vector2Int(1, 0), new Vector2Int(0, -1), new Vector2Int(0, 1) })
             {
                 int nx = x + direction.x;
-                int ny = y + direction.y;
+                int ny = y + direction.y; //n stand for next 
 
                 if (nx >= 0 && nx < width && ny >= 0 && ny < height && !visited[nx, ny])
                 {
@@ -109,8 +115,10 @@ public class MapGenerator : MonoBehaviour
                 }
             }
 
-            
-            doorPlaced = false; // checking if the door was place, if it isnt we doing this loop untill it is 
+            if (doorPlaced)
+            {
+                doorPlaced = false;
+            }// checking if the door was place, if it isnt we doing this loop untill it is 
             for (int x = 1; x < width - 1; x++)
             {
                 for (int y = 1; y < height - 1; y++)
@@ -178,6 +186,7 @@ public class MapGenerator : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
+               if ((y * (width + 1) + x)<= mapData.Length - 1){
                 char tileChar = mapData[y * (width + 1) + x];
                 Vector3Int tilePosition = new Vector3Int(x, y, 0);
 
@@ -201,6 +210,7 @@ public class MapGenerator : MonoBehaviour
                     default:
                         break;
                 }
+               }
             }
         }
     }
