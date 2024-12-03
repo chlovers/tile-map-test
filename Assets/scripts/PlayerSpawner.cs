@@ -25,6 +25,8 @@ public class PlayerSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
         Vector2Int newCell = cellspot;
         bool hasmoved = false;
 
@@ -46,9 +48,10 @@ public class PlayerSpawner : MonoBehaviour
         else if (Keyboard.current.aKey.wasPressedThisFrame)
         {
             newCell.x -= 1;
+            hasmoved = true;
         }
-        if (hasmoved)
-        {
+        if (hasmoved == true)
+        { 
             SimpleMap.CellData celldata = board.GetCellData(newCell);
 
             if (celldata != null && celldata.Passible)

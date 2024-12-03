@@ -26,7 +26,7 @@ public class SimpleMap : MonoBehaviour
     private CellData[,] cellDatas;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         tilemap = GetComponentInChildren<Tilemap>();
         mapgrid = GetComponentInChildren<Grid>();
@@ -38,16 +38,17 @@ public class SimpleMap : MonoBehaviour
             for (int x = 0; x < Width; ++x)
             {
                 Tile tile;
+                cellDatas[x, y] = new CellData();
 
                 if (x == 0 || y == 0 || x == Width - 1 || y == Height - 1)
                 {
                     tile = WallTiles[Random.Range(0, WallTiles.Length)];
-                   
+                    cellDatas[x, y].Passible = false;
                 }
                 else
                 {
                     tile = GroundTiles[Random.Range(0, GroundTiles.Length)];
-                    
+                    cellDatas[x, y].Passible = true;
                 }
 
                 tilemap.SetTile(new Vector3Int(x, y, 0), tile);
@@ -63,8 +64,10 @@ public class SimpleMap : MonoBehaviour
     public CellData GetCellData(Vector2Int cellIndex)
     {
         if (cellIndex.x < 0 || cellIndex.x >= Width || cellIndex.y < 0 || cellIndex.y >= Height)
-        {  
+        {
+          
             return null; 
+
         }
         
         return cellDatas[cellIndex.x, cellIndex.y];
