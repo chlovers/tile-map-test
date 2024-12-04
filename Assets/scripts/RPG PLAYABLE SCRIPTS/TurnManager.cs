@@ -14,7 +14,7 @@ public class TurnManager
     }
 
 
-    public void Nextturn()
+    public void Tick()
     {
         turncount += 1;
 

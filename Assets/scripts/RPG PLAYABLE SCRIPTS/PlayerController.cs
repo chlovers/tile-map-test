@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
    private MapManager map;
     private Vector2Int cellspot;
+    public HealthSystem healthSystem;
 
     public void Spawn(MapManager mapManager, Vector2Int cell)
     {
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        healthSystem = new HealthSystem();
     }
 
     // Update is called once per frame
@@ -63,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
             if (cellData != null && cellData.passable)
             {
-               // GameManager.Instance.TurnManager.Nextturn();
+               // GameManager.Instance.TurnManager.Tick(); this breaks the movement for some reason 
                 MoveTo(newCell);
             }
         }
