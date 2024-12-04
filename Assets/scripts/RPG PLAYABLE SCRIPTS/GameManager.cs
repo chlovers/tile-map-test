@@ -4,39 +4,37 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public MapManager  MapManager;
+    public MapManager MapManager;
     public PlayerController PlayerController;
     private int Healthamount = 100;
-    private TurnManager turnManager;
 
     public static GameManager Instance { get; private set; }
     public TurnManager TurnManager { get; private set; }
 
-   
-
     private void Awake()
     {
+        // Ensure only one instance of GameManager
         if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
-    }
 
+        // Initialize TurnManager in Awake to ensure it's ready for use
+        TurnManager = new TurnManager();
+        TurnManager.OnTick += OnTurnHappen;
+    }
 
     void Start()
     {
-        TurnManager = new TurnManager();
-        TurnManager.OnTick += OnTurnHappen;
-
+        // Initialize MapManager and spawn PlayerController
         MapManager.Init();
         PlayerController.Spawn(MapManager, new Vector2Int(1, 1));
     }
 
     void OnTurnHappen()
     {
-        Healthamount -= 1;
-        Debug.Log("Current amount of health : " + Healthamount);
+        Debug.Log("Current amount of health: " + Healthamount);
     }
 }

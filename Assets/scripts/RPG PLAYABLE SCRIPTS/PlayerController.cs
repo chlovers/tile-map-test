@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private Vector2Int cellspot;
     public HealthSystem healthSystem;
 
+    public object Cell { get; internal set; }
+
     public void Spawn(MapManager mapManager, Vector2Int cell)
     {
         map = mapManager;

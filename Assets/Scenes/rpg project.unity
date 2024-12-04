@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 9934863}
   - component: {fileID: 9934862}
   - component: {fileID: 9934865}
+  - component: {fileID: 9934867}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -265,6 +266,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.15}
   m_EdgeRadius: 0
+--- !u!114 &9934867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9934861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8444593e12b7c4845a5a1f49c0307b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  invincibilityTime: 1
+  isInvincible: 0
 --- !u!1 &66246969
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,6 +597,7 @@ GameObject:
   - component: {fileID: 832323858}
   - component: {fileID: 832323857}
   - component: {fileID: 832323860}
+  - component: {fileID: 832323861}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -601,7 +618,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 3
-  Player: {fileID: 9934861}
 --- !u!212 &832323858
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -714,6 +730,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14, y: 0.12}
   m_EdgeRadius: 0
+--- !u!58 &832323861
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832323856}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!1 &1091695727
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,6 +990,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthText: {fileID: 1475267118}
+--- !u!1 &1877958500 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8582563042035146425, guid: e2ae1872df4863c45a998b94af0012c8, type: 3}
+  m_PrefabInstance: {fileID: 2807913431825552530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1877958504
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877958500}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1904648915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,7 +1316,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8582563042035146425, guid: e2ae1872df4863c45a998b94af0012c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1877958504}
   m_SourcePrefab: {fileID: 100100000, guid: e2ae1872df4863c45a998b94af0012c8, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
