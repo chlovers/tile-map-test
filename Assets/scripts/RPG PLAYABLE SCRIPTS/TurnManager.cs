@@ -18,7 +18,7 @@ public class TurnManager
     public void Tick()
     {
         turncount += 1;
-
+        OnTick?.Invoke();
 
     }
 }
