@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public MapManager  MapManager;
     public PlayerController PlayerController;
-
+    private int Healthamount = 100;
     private TurnManager turnManager;
 
     public static GameManager Instance { get; private set; }
@@ -27,10 +27,16 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        turnManager = new TurnManager();
-        TurnManager = turnManager;
+        TurnManager = new TurnManager();
+        TurnManager.OnTick += OnTurnHappen;
 
         MapManager.Init();
         PlayerController.Spawn(MapManager, new Vector2Int(1, 1));
+    }
+
+    void OnTurnHappen()
+    {
+        Healthamount -= 1;
+        Debug.Log("Current amount of health : " + Healthamount);
     }
 }

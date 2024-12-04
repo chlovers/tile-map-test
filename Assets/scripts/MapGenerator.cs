@@ -16,13 +16,7 @@ public class MapGenerator : MonoBehaviour
     public GameObject Player;
     private bool doorPlaced = false; // this makes sure it knows i placed a door casue sometimes it was spawning so man doors lol
 
-  /// <summary>
-  /// Generates map, resets if map is not connected
-  /// </summary>
-  /// <param name="map"></param>
-  /// <param name="width"></param>
-  /// <param name="height"></param>
-  /// <returns></returns>
+
     private bool IsMapConnected(char[,] map, int width, int height)
     {
         bool[,] visited = new bool[width, height];
