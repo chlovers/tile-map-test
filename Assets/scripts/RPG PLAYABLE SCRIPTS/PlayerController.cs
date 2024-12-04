@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
 
             if (cellData != null && cellData.passable)
             {
-                GameManager.Instance.TurnManager.Nextturn();
+               // GameManager.Instance.TurnManager.Nextturn();
                 MoveTo(newCell);
             }
         }
