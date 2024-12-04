@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-       turnManager = new TurnManager();
+        turnManager = new TurnManager();
+        TurnManager = turnManager;
 
         MapManager.Init();
         PlayerController.Spawn(MapManager, new Vector2Int(1, 1));

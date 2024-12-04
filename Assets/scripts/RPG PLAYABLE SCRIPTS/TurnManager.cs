@@ -6,7 +6,8 @@ using UnityEngine;
 public class TurnManager 
 {
     private int turncount;
-   
+    public event System.Action OnTick;
+
 
     public TurnManager() 
     {
@@ -17,6 +18,7 @@ public class TurnManager
     public void Tick()
     {
         turncount += 1;
+
 
     }
 }

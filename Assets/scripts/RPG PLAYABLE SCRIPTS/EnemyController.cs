@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public int Health = 3;
+
+    private int Currenthealth;
+
+    private void Awake()
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {

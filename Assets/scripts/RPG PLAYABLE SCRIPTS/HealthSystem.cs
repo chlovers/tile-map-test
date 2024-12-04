@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System;
 using System.Diagnostics;
 
@@ -26,7 +25,7 @@ public class HealthSystem
     {
         // Implement HUD display
         UpdateHealthStatus();
-        return $"Health: {healthStatus}/{health}, Shield: {shield}/{maxshield} , Lives {lives}, XP {xp} Level {level} ";
+        return $"Health: {healthStatus}/{health}, Shield: {shield}/{maxshield} , Lives {lives} ";
     }
 
     public void TakeDamage(int damage)

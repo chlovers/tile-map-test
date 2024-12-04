@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
         map = mapManager;
         MoveTo(cell);
 
-        
+        healthSystem = new HealthSystem();
 
     }
     
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthSystem = new HealthSystem();
+        
     }
 
     // Update is called once per frame
@@ -64,9 +64,16 @@ public class PlayerController : MonoBehaviour
 
             if (cellData != null && cellData.passable)
             {
-               // GameManager.Instance.TurnManager.Tick(); this breaks the movement for some reason 
+                GameManager.Instance.TurnManager.Tick();
                 MoveTo(newCell);
             }
         }
+
+        healthSystem.Update();
+    }
+
+    public void TakeDamage(int damage)
+    {
+        healthSystem.TakeDamage(damage);
     }
 }

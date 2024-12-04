@@ -14,7 +14,7 @@ public class MapManager : MonoBehaviour
     public Tile[] walltiles;
     private CellData[,] tiledata;
     public Grid grid;
-    public PlayerController player;
+   
 
 
     public class CellData
@@ -52,7 +52,7 @@ public class MapManager : MonoBehaviour
 
             }  
         }
-        player.Spawn(this, new Vector2Int(1,1));
+        
     }
 
     public Vector3 CellToWorld(Vector2Int cellIndex)
