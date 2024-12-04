@@ -22,7 +22,7 @@ public class MapManager : MonoBehaviour
         public bool passable;
     }
 
-     void Start()
+     public void Init()
     {
         tilemap = GetComponentInChildren<Tilemap>();
        grid = GetComponentInChildren<Grid>();
